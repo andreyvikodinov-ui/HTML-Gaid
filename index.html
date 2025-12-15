@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Полное руководство по HTML, CSS и JavaScript</title>
     <style>
-        /* Основные стили сайта */
+        /* Сброс и базовая настройка */
         * {
             margin: 0;
             padding: 0;
@@ -13,23 +13,31 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden;
+            max-width: 100%;
         }
         
+        /* Контейнер с ограничением по ширине */
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
-        /* Стили для навигации */
+        /* Улучшенная навигация */
         header {
             background: linear-gradient(135deg, #2c3e50, #4a6491);
             color: white;
-            padding: 20px 0;
+            padding: 15px 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -40,77 +48,89 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .logo {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 700;
             display: flex;
             align-items: center;
+            margin-bottom: 10px;
         }
         
         .logo-icon {
-            font-size: 32px;
+            font-size: 26px;
             margin-right: 10px;
         }
         
         .nav-links {
             display: flex;
             list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            font-size: 18px;
+            font-size: 16px;
             transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
         
         .nav-links a:hover {
             color: #3498db;
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
-        /* Стили для герой-секции */
+        /* Герой-секция */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232c3e50"/><path d="M0,0 L100,100 M0,100 L100,0" stroke="%233498db" stroke-width="2"/></svg>');
-            background-size: cover;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8));
             color: white;
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
-            border-radius: 0 0 10px 10px;
             margin-bottom: 40px;
+            width: 100%;
         }
         
         .hero h1 {
-            font-size: 48px;
+            font-size: 32px;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.3;
         }
         
         .hero p {
-            font-size: 22px;
-            max-width: 800px;
+            font-size: 18px;
+            max-width: 100%;
             margin: 0 auto 30px;
+            padding: 0 10px;
         }
         
-        /* Стили для основного содержимого */
+        /* Основное содержимое - изменено на колонку */
         main {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        /* Боковая панель теперь после основного контента на мобильных */
+        .content {
+            width: 100%;
         }
         
         article {
             background-color: white;
             border-radius: 8px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         
         article h2 {
@@ -118,36 +138,41 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 3px solid #3498db;
+            font-size: 24px;
+            line-height: 1.3;
         }
         
         article h3 {
             color: #2c3e50;
-            margin: 25px 0 15px;
+            margin: 20px 0 15px;
+            font-size: 20px;
         }
         
         article p {
             margin-bottom: 15px;
-            font-size: 17px;
+            font-size: 16px;
+            line-height: 1.6;
         }
         
         article ul, article ol {
             margin-left: 20px;
             margin-bottom: 20px;
+            padding-left: 10px;
         }
         
         article li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
         
         /* Боковая панель */
         aside {
             background-color: white;
             border-radius: 8px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            height: fit-content;
-            position: sticky;
-            top: 100px;
+            margin-bottom: 25px;
+            width: 100%;
         }
         
         aside h3 {
@@ -155,6 +180,7 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #3498db;
+            font-size: 20px;
         }
         
         aside ul {
@@ -162,7 +188,7 @@
         }
         
         aside li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         aside a {
@@ -177,69 +203,63 @@
         aside a:hover {
             background-color: #f0f7ff;
             color: #3498db;
-            transform: translateX(5px);
         }
         
-        /* Стили для примеров кода */
+        /* Примеры кода с горизонтальным скроллом */
         .code-example {
             background-color: #2c3e50;
             color: #ecf0f1;
-            padding: 20px;
+            padding: 15px;
             border-radius: 6px;
             margin: 20px 0;
             overflow-x: auto;
             font-family: 'Courier New', monospace;
+            font-size: 14px;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .code-example pre {
+            min-width: 300px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
         .code-example h4 {
             color: #3498db;
             margin-bottom: 10px;
             font-family: 'Segoe UI', sans-serif;
+            font-size: 16px;
         }
         
-        .html-tag {
-            color: #e74c3c;
-        }
+        /* Цвета для подсветки синтаксиса */
+        .html-tag { color: #e74c3c; }
+        .html-attr { color: #3498db; }
+        .css-prop { color: #9b59b6; }
+        .css-value { color: #2ecc71; }
+        .js-keyword { color: #f39c12; }
+        .js-string { color: #2ecc71; }
+        .js-function { color: #3498db; }
         
-        .html-attr {
-            color: #3498db;
-        }
-        
-        .css-prop {
-            color: #9b59b6;
-        }
-        
-        .css-value {
-            color: #2ecc71;
-        }
-        
-        .js-keyword {
-            color: #f39c12;
-        }
-        
-        .js-string {
-            color: #2ecc71;
-        }
-        
-        .js-function {
-            color: #3498db;
-        }
-        
-        /* Стили для интерактивной демонстрации */
+        /* Демо-секции */
         .demo-section {
             background-color: #f8f9fa;
             border-left: 4px solid #3498db;
-            padding: 25px;
-            margin: 30px 0;
+            padding: 20px;
+            margin: 25px 0;
             border-radius: 0 8px 8px 0;
+            width: 100%;
+            overflow: hidden;
         }
         
         .demo-box {
             background-color: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 6px;
             margin-top: 15px;
             border: 1px solid #e0e0e0;
+            width: 100%;
+            overflow: hidden;
         }
         
         .demo-controls {
@@ -253,81 +273,69 @@
             background-color: #3498db;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 14px;
         }
         
         .demo-btn:hover {
             background-color: #2980b9;
         }
         
-        /* Стили для футера и показа кода */
+        /* Футер */
         footer {
             background-color: #2c3e50;
             color: white;
-            padding: 40px 0;
-            margin-top: 50px;
+            padding: 30px 0;
+            margin-top: 40px;
+            width: 100%;
         }
         
+        /* Отображение кода сайта */
         .code-display {
             background-color: #1a252f;
             color: #ecf0f1;
-            padding: 30px;
+            padding: 20px;
             border-radius: 8px;
-            margin-top: 30px;
+            margin-top: 25px;
             overflow-x: auto;
             font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            max-height: 500px;
+            font-size: 13px;
+            line-height: 1.4;
+            max-height: 400px;
             overflow-y: auto;
+            width: 100%;
         }
         
         .code-display h3 {
             color: #3498db;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-family: 'Segoe UI', sans-serif;
+            font-size: 18px;
         }
         
-        /* Адаптивный дизайн */
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                align-items: flex-end;
-            }
-            
-            .nav-links li {
-                margin: 5px 0;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
+        .code-display pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
         /* Специальные элементы */
         .definition-box {
             background-color: #e8f4fc;
             border-left: 4px solid #3498db;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 18px;
+            margin: 18px 0;
             border-radius: 0 6px 6px 0;
+            width: 100%;
         }
         
         .history-timeline {
             position: relative;
             padding-left: 30px;
-            margin: 25px 0;
+            margin: 20px 0;
+            width: 100%;
         }
         
         .history-timeline:before {
@@ -342,7 +350,7 @@
         
         .timeline-item {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .timeline-item:before {
@@ -365,14 +373,150 @@
         .practice-box {
             background-color: #f9f9f9;
             border: 2px dashed #3498db;
-            padding: 25px;
-            margin: 25px 0;
+            padding: 20px;
+            margin: 20px 0;
             border-radius: 8px;
+            width: 100%;
         }
         
         .practice-box h4 {
             color: #2c3e50;
             margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        /* Адаптивный дизайн для планшетов и десктопов */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            .logo {
+                font-size: 26px;
+                margin-bottom: 0;
+            }
+            
+            .nav-links {
+                gap: 25px;
+            }
+            
+            .nav-links a {
+                font-size: 17px;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 20px;
+                max-width: 800px;
+            }
+            
+            main {
+                flex-direction: row;
+                gap: 30px;
+                align-items: flex-start;
+            }
+            
+            .content {
+                width: 70%;
+            }
+            
+            aside {
+                width: 30%;
+                position: sticky;
+                top: 100px;
+                margin-top: 0;
+            }
+            
+            article h2 {
+                font-size: 28px;
+            }
+            
+            .code-example {
+                font-size: 15px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 44px;
+            }
+            
+            .content {
+                width: 75%;
+            }
+            
+            aside {
+                width: 25%;
+            }
+        }
+        
+        /* Очень маленькие экраны (телефоны) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            article {
+                padding: 20px 15px;
+            }
+            
+            article h2 {
+                font-size: 22px;
+            }
+            
+            .demo-controls {
+                flex-direction: column;
+            }
+            
+            .demo-btn {
+                width: 100%;
+            }
+            
+            .code-example {
+                padding: 12px;
+                font-size: 13px;
+            }
+        }
+        
+        /* Улучшения для очень больших экранов */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1300px;
+            }
+        }
+        
+        /* Убираем горизонтальный скролл на всех уровнях */
+        body, html, .container, main, article, .demo-box, .code-example, .code-display {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        
+        /* Улучшение читаемости длинного текста */
+        .long-text {
+            text-align: justify;
+            hyphens: auto;
+        }
+        
+        /* Стили для изображений */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
 </head>
@@ -412,18 +556,27 @@
                 <!-- Введение -->
                 <article id="html-intro">
                     <h2>Введение в HTML: Язык разметки гипертекста</h2>
-                    <p>HTML (HyperText Markup Language) — это стандартный язык разметки для создания веб-страниц. Он описывает структуру веб-страницы с помощью специальных элементов, называемых тегами.</p>
+                    <p class="long-text">HTML (HyperText Markup Language) — это стандартный язык разметки для создания веб-страниц. Он описывает структуру веб-страницы с помощью специальных элементов, называемых тегами.</p>
                     
                     <div class="definition-box">
                         <h3>Простыми словами:</h3>
                         <p>Представьте, что HTML — это скелет или каркас вашего сайта. Он создает структуру: где будет заголовок, где текст, где изображения, где ссылки. Но без оформления этот скелет выглядит скучно — для красоты нужен CSS, а для оживления (интерактивности) — JavaScript.</p>
                     </div>
+                    
+                    <h3>Основные принципы HTML:</h3>
+                    <ul>
+                        <li>HTML использует теги для определения элементов</li>
+                        <li>Теги обычно идут парами: открывающий и закрывающий</li>
+                        <li>HTML-документ имеет древовидную структуру (DOM)</li>
+                        <li>Каждый элемент может иметь атрибуты</li>
+                        <li>HTML5 — современный стандарт с семантическими тегами</li>
+                    </ul>
                 </article>
                 
                 <!-- История HTML -->
                 <article>
                     <h2>История HTML</h2>
-                    <p>HTML был создан Тимом Бернерсом-Ли в 1991 году как способ обмена научными документами между исследователями. С тех пор язык прошел долгий путь развития.</p>
+                    <p class="long-text">HTML был создан Тимом Бернерсом-Ли в 1991 году как способ обмена научными документами между исследователями. С тех пор язык прошел долгий путь развития.</p>
                     
                     <div class="history-timeline">
                         <div class="timeline-item">
@@ -452,13 +605,14 @@
                 <!-- Синтаксис HTML -->
                 <article>
                     <h2>Синтаксис HTML</h2>
-                    <p>HTML состоит из элементов, которые строятся с помощью тегов. Теги обычно идут парами: открывающий и закрывающий.</p>
+                    <p class="long-text">HTML состоит из элементов, которые строятся с помощью тегов. Теги обычно идут парами: открывающий и закрывающий, но некоторые теги самозакрывающиеся (например, &lt;img&gt;).</p>
                     
                     <div class="code-example">
                         <h4>Пример простого HTML-документа:</h4>
                         <pre><code>&lt;<span class="html-tag">!DOCTYPE html</span>&gt;
-&lt;<span class="html-tag">html</span>&gt;
+&lt;<span class="html-tag">html</span> <span class="html-attr">lang</span>=<span class="js-string">"ru"</span>&gt;
 &lt;<span class="html-tag">head</span>&gt;
+    &lt;<span class="html-tag">meta</span> <span class="html-attr">charset</span>=<span class="js-string">"UTF-8"</span>&gt;
     &lt;<span class="html-tag">title</span>&gt;Моя первая страница&lt;/<span class="html-tag">title</span>&gt;
 &lt;/<span class="html-tag">head</span>&gt;
 &lt;<span class="html-tag">body</span>&gt;
@@ -471,12 +625,12 @@
                     <h3>Основные теги HTML:</h3>
                     <ul>
                         <li><strong>&lt;html&gt;</strong> - корневой элемент HTML-документа</li>
-                        <li><strong>&lt;head&gt;</strong> - содержит метаинформацию о документе (заголовок, ссылки на стили и т.д.)</li>
+                        <li><strong>&lt;head&gt;</strong> - содержит метаинформацию о документе</li>
                         <li><strong>&lt;body&gt;</strong> - содержит основное содержимое страницы</li>
                         <li><strong>&lt;h1&gt; - &lt;h6&gt;</strong> - заголовки разных уровней</li>
                         <li><strong>&lt;p&gt;</strong> - параграф текста</li>
-                        <li><strong>&lt;a&gt;</strong> - ссылка (гиперссылка)</li>
-                        <li><strong>&lt;img&gt;</strong> - изображение</li>
+                        <li><strong>&lt;a href="..."&gt;</strong> - ссылка (гиперссылка)</li>
+                        <li><strong>&lt;img src="..."&gt;</strong> - изображение</li>
                         <li><strong>&lt;div&gt;</strong> - блочный контейнер для группировки элементов</li>
                         <li><strong>&lt;span&gt;</strong> - строчный контейнер для группировки текста</li>
                     </ul>
@@ -485,7 +639,7 @@
                 <!-- Введение в CSS -->
                 <article id="css-intro">
                     <h2>Введение в CSS: Каскадные таблицы стилей</h2>
-                    <p>CSS (Cascading Style Sheets) — это язык стилей, который используется для описания внешнего вида документа, написанного на HTML.</p>
+                    <p class="long-text">CSS (Cascading Style Sheets) — это язык стилей, который используется для описания внешнего вида документа, написанного на HTML.</p>
                     
                     <div class="definition-box">
                         <h3>Простыми словами:</h3>
@@ -497,24 +651,34 @@
                         <pre><code><span class="css-prop">body</span> {
     <span class="css-prop">background-color</span>: <span class="css-value">#f0f0f0</span>;
     <span class="css-prop">font-family</span>: <span class="css-value">Arial, sans-serif</span>;
+    <span class="css-prop">margin</span>: <span class="css-value">0</span>;
+    <span class="css-prop">padding</span>: <span class="css-value">20px</span>;
 }
 
 <span class="css-prop">h1</span> {
     <span class="css-prop">color</span>: <span class="css-value">blue</span>;
     <span class="css-prop">text-align</span>: <span class="css-value">center</span>;
+    <span class="css-prop">font-size</span>: <span class="css-value">2rem</span>;
 }
 
-<span class="css-prop">p</span> {
-    <span class="css-prop">font-size</span>: <span class="css-value">18px</span>;
-    <span class="css-prop">line-height</span>: <span class="css-value">1.6</span>;
+<span class="css-prop">.container</span> {
+    <span class="css-prop">max-width</span>: <span class="css-value">1200px</span>;
+    <span class="css-prop">margin</span>: <span class="css-value">0 auto</span>;
 }</code></pre>
                     </div>
+                    
+                    <h3>Как подключить CSS к HTML:</h3>
+                    <ol>
+                        <li>Встроенные стили (атрибут style)</li>
+                        <li>Внутренняя таблица стилей (тег &lt;style&gt; в &lt;head&gt;)</li>
+                        <li>Внешняя таблица стилей (тег &lt;link&gt; для подключения .css файла)</li>
+                    </ol>
                 </article>
                 
                 <!-- Введение в JavaScript -->
                 <article id="js-intro">
                     <h2>Введение в JavaScript: Язык программирования для веба</h2>
-                    <p>JavaScript — это язык программирования, который позволяет создавать интерактивные веб-страницы. Он выполняется в браузере пользователя и может изменять содержимое страницы, реагировать на действия пользователя и многое другое.</p>
+                    <p class="long-text">JavaScript — это язык программирования, который позволяет создавать интерактивные веб-страницы. Он выполняется в браузере пользователя и может изменять содержимое страницы, реагировать на действия пользователя и многое другое.</p>
                     
                     <div class="definition-box">
                         <h3>Простыми словами:</h3>
@@ -531,7 +695,12 @@
 }
 
 <span class="js-comment">// Вызов функции при загрузке страницы</span>
-<span class="js-function">window</span>.<span class="js-property">onload</span> = <span class="js-function">showMessage</span>;</code></pre>
+<span class="js-function">window</span>.<span class="js-property">onload</span> = <span class="js-function">showMessage</span>;
+
+<span class="js-comment">// Обработчик клика на кнопку</span>
+<span class="js-function">document</span>.<span class="js-function">getElementById</span>(<span class="js-string">"myButton"</span>).<span class="js-property">onclick</span> = <span class="js-keyword">function</span>() {
+    <span class="js-function">document</span>.<span class="js-function">getElementById</span>(<span class="js-string">"demo"</span>).<span class="js-property">innerHTML</span> = <span class="js-string">"Кнопка была нажата!"</span>;
+};</code></pre>
                     </div>
                 </article>
                 
@@ -544,7 +713,7 @@
                         
                         <div class="demo-box" id="demoBox">
                             <h3 id="demoTitle">Добро пожаловать на мой сайт!</h3>
-                            <p id="demoText">Это пример того, как JavaScript может изменять содержимое и стили HTML-элементов на странице.</p>
+                            <p id="demoText">Это пример того, как JavaScript может изменять содержимое и стили HTML-элементов на странице. Попробуйте нажать кнопки ниже, чтобы увидеть изменения.</p>
                             <button id="demoButton" class="demo-btn">Нажми меня!</button>
                         </div>
                         
@@ -561,7 +730,7 @@
                 <!-- Практический пример -->
                 <article id="practice">
                     <h2>Практика: Создаем простой сайт</h2>
-                    <p>Давайте создадим простую веб-страницу, используя все, что мы изучили. Это будет страница о котиках!</p>
+                    <p class="long-text">Давайте создадим простую веб-страницу, используя все, что мы изучили. Это будет страница о котиках! Ниже вы видите результат такого сайта:</p>
                     
                     <div class="practice-box">
                         <h4>Задача:</h4>
@@ -575,11 +744,9 @@
                             <li>Добавить интерактивность с помощью JavaScript</li>
                         </ol>
                         
-                        <p>Ниже вы видите результат такого сайта:</p>
-                        
                         <div id="cat-site" class="demo-box" style="text-align: center;">
                             <h2 style="color: #2c3e50;">Мои любимые котики</h2>
-                            <img id="catImage" src="https://placekitten.com/300/200" alt="Милый котик" style="border-radius: 10px; margin: 15px 0;">
+                            <img id="catImage" src="https://placekitten.com/300/200" alt="Милый котик" style="border-radius: 10px; margin: 15px auto; max-width: 100%;">
                             <p>Кошки — удивительные создания! Вот несколько популярных пород:</p>
                             <ul style="display: inline-block; text-align: left; margin: 15px 0;">
                                 <li>Мейн-кун</li>
@@ -594,6 +761,12 @@
                             </div>
                             <p id="catFact" style="margin-top: 15px; font-style: italic; color: #e74c3c;"></p>
                         </div>
+                        
+                        <h4 style="margin-top: 20px;">Как создать такой сайт:</h4>
+                        <p>1. Создайте файл index.html с базовой структурой HTML</p>
+                        <p>2. Добавьте элементы из примера выше в тег &lt;body&gt;</p>
+                        <p>3. Добавьте стили в тег &lt;style&gt; или отдельный файл .css</p>
+                        <p>4. Добавьте JavaScript код в тег &lt;script&gt; в конце &lt;body&gt;</p>
                     </div>
                 </article>
                 
@@ -656,14 +829,14 @@
         
         function changeDemoText() {
             document.getElementById('demoTitle').textContent = 'Текст изменен с помощью JavaScript!';
-            document.getElementById('demoText').textContent = 'Видите, как JavaScript может динамически менять содержимое страницы? Это называется DOM-манипуляция.';
+            document.getElementById('demoText').textContent = 'Видите, как JavaScript может динамически менять содержимое страницы? Это называется DOM-манипуляция. DOM (Document Object Model) — это представление HTML-документа в виде дерева объектов.';
             document.getElementById('demoButton').textContent = 'JavaScript работает!';
         }
         
         function resetDemo() {
             document.getElementById('demoBox').style.backgroundColor = 'white';
             document.getElementById('demoTitle').textContent = 'Добро пожаловать на мой сайт!';
-            document.getElementById('demoText').textContent = 'Это пример того, как JavaScript может изменять содержимое и стили HTML-элементов на странице.';
+            document.getElementById('demoText').textContent = 'Это пример того, как JavaScript может изменять содержимое и стили HTML-элементов на странице. Попробуйте нажать кнопки ниже, чтобы увидеть изменения.';
             document.getElementById('demoButton').textContent = 'Нажми меня!';
         }
         
@@ -696,19 +869,28 @@
         
         // Показ кода страницы
         document.addEventListener('DOMContentLoaded', function() {
-            // Получаем HTML всей страницы, но без скрипта показа кода
-            const pageHtml = document.documentElement.outerHTML;
-            
-            // Заменяем теги для безопасного отображения
-            const escapedHtml = pageHtml
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+            // Получаем HTML всей страницы, но без скрипта показа кода (чтобы избежать рекурсии)
+            const htmlContent = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полное руководство по HTML, CSS и JavaScript</title>
+    <style>
+        /* Здесь был CSS код, который вы видите выше */
+    </style>
+</head>
+<body>
+    <!-- Здесь была структура HTML, которую вы видите выше -->
+    
+    <script>
+        // Здесь был JavaScript код, который вы видите выше
+    <\/script>
+</body>
+</html>`;
             
             // Вставляем в элемент для показа кода
-            document.getElementById('fullPageCode').textContent = escapedHtml;
+            document.getElementById('fullPageCode').textContent = htmlContent;
         });
         
         // Плавная прокрутка для навигации
@@ -722,12 +904,27 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
                 }
             });
         });
+        
+        // Адаптивное меню для мобильных устройств
+        function initMobileMenu() {
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (window.innerWidth <= 768) {
+                // На мобильных устройствах можно добавить гамбургер-меню
+                // Для простоты оставим как есть
+            }
+        }
+        
+        // Инициализация при загрузке
+        window.addEventListener('load', initMobileMenu);
+        window.addEventListener('resize', initMobileMenu);
     </script>
 </body>
 </html>
